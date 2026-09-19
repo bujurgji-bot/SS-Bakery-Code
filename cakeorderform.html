@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cake Order Form — SS Bakery House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page-bg:      #E8DDF5;
+    --card-bg:      #F3ECFA;
+    --card-inner:   #FFFFFF;
+    --border:       #B9A3D4;
+    --primary:      #5B3B8C;
+    --label:        #4A3080;
+    --accent:       #8A5FC7;
+    --underline:    #C9B8E0;
+    --muted:        #7A6B95;
+    --radius:       22px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background: var(--page-bg);
+    color: var(--label);
+    line-height: 1.5;
+    padding: 20px 14px 60px;
+    -webkit-font-smoothing: antialiased;
+    font-size: 17px;
+  }
+
+  /* ---------- HEADER (logo + cake illustration) ---------- */
+  .header {
+    max-width: 620px;
+    margin: 0 auto 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 0 8px;
+  }
+  .brand-block { text-align: left; }
+  .brand-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 58px;
+    line-height: 1;
+    color: var(--primary);
+    text-shadow: 1px 1px 0 rgba(138,95,199,0.15);
+  }
+  .brand-script .small-ss {
+    display: block;
+    font-size: 34px;
+    letter-spacing: 4px;
+    margin-bottom: -10px;
+  }
+  .brand-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--primary);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand-sub::before,
+  .brand-sub::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--primary);
+    opacity: 0.45;
+  }
+  .cake-img {
+    width: 130px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 8px 16px rgba(91,59,140,0.18));
+  }
+  @media (max-width: 520px) {
+    .cake-img { width: 90px; }
+    .brand-script { font-size: 44px; }
+    .brand-script .small-ss { font-size: 26px; }
+  }
+
+  /* ---------- FORM TITLE PILL ---------- */
+  .title-pill {
+    max-width: 520px;
+    margin: 0 auto 22px;
+    background: linear-gradient(180deg, #F3ECFA 0%, #E4D7F3 100%);
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    padding: 14px 40px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 14px rgba(91,59,140,0.10);
+  }
+  .title-pill h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--primary);
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .title-pill h1::before,
+  .title-pill h1::after {
+    content: "❦";
+    font-size: 20px;
+    color: var(--accent);
+    font-family: serif;
+  }
+  .title-pill .corner-heart {
+    position: absolute;
+    top: 12px; right: 22px;
+    color: var(--accent);
+    font-size: 18px;
+  }
+
+  /* ---------- MAIN CARD ---------- */
+  .card {
+    max-width: 620px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 34px 30px 40px;
+    box-shadow: 0 10px 30px rgba(91,59,140,0.12);
+    position: relative;
+  }
+  .card::before {
+    content: "♡";
+    position: absolute;
+    top: 16px; right: 20px;
+    color: var(--accent);
+    font-size: 22px;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 30px; right: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.5;
+  }
+
+  /* ---------- UNDERLINE FIELDS (classic form look) ---------- */
+  .field {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 18px;
+  }
+  .field > label {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--label);
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: 130px;
+  }
+  .field .line-input {
+    flex: 1;
+    border: none;
+    border-bottom: 1.4px solid var(--underline);
+    background: transparent;
+    font-family: inherit;
+    font-size: 17px;
+    color: var(--primary);
+    padding: 4px 6px 6px;
+    outline: none;
+    transition: border-color 0.2s;
+    min-width: 0;
+  }
+  .field .line-input:focus {
+    border-bottom-color: var(--accent);
+  }
+  .field .line-input::placeholder {
+    color: #B6A7CE;
+    font-style: italic;
+    opacity: 0.7;
+  }
+  .field.full-width {
+    display: block;
+  }
+  .field.full-width > label { display: block; margin-bottom: 4px; }
+  .field.full-width .line-input { width: 100%; }
+
+  /* Textareas styled as multi-line underline boxes */
+  textarea.line-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1.4px solid var(--underline);
+    background: transparent;
+    font-family: inherit;
+    font-size: 17px;
+    color: var(--primary);
+    padding: 4px 6px;
+    outline: none;
+    resize: vertical;
+    min-height: 30px;
+    line-height: 2;
+    background-image: linear-gradient(transparent calc(100% - 1px), var(--underline) 1px);
+    background-size: 100% 2em;
+    background-repeat: repeat-y;
+  }
+  textarea.line-input:focus { border-bottom-color: var(--accent); }
+
+  /* ---------- SECTION HEADERS ("Cake Details") ---------- */
+  .section-heading {
+    text-align: center;
+    margin: 28px 0 18px;
+    position: relative;
+  }
+  .section-heading h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 34px;
+    font-weight: 400;
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    line-height: 1;
+  }
+  .section-heading h2::before,
+  .section-heading h2::after {
+    content: "❦";
+    font-family: serif;
+    font-size: 16px;
+    color: var(--accent);
+  }
+
+  /* ---------- CHECKBOX ROWS ---------- */
+  .checkbox-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    margin: 8px 0 16px;
+    padding-left: 4px;
+  }
+  .checkbox-row .cb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--label);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .checkbox-row .cb input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border: 1.6px solid var(--label);
+    border-radius: 3px;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .checkbox-row .cb input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .checkbox-row .cb input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    top: -3px; left: 3px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  /* ---------- INLINE FIELDS (e.g., "Other: ___") ---------- */
+  .inline-input {
+    border: none;
+    border-bottom: 1.4px solid var(--underline);
+    background: transparent;
+    font-family: inherit;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--primary);
+    padding: 2px 6px;
+    outline: none;
+    min-width: 140px;
+    flex: 1;
+  }
+  .inline-input:focus { border-bottom-color: var(--accent); }
+
+  /* ---------- SUBMIT BUTTON ---------- */
+  .submit-btn {
+    display: block;
+    width: 100%;
+    margin-top: 28px;
+    padding: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #fff;
+    background: linear-gradient(135deg, #6A4AA0, #8A5FC7);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(91,59,140,0.28);
+    transition: transform 0.1s, box-shadow 0.2s, opacity 0.2s;
+  }
+  .submit-btn:hover {
+    opacity: 0.95;
+    box-shadow: 0 10px 28px rgba(91,59,140,0.36);
+  }
+  .submit-btn:active { transform: scale(0.98); }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    margin-top: 34px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    font-style: italic;
+    color: var(--primary);
+  }
+  .footer .thanks {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+  .footer .thanks .script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    font-style: normal;
+    display: inline-block;
+    margin-top: 2px;
+  }
+  .footer .tagline {
+    font-size: 13px;
+    text-align: right;
+    color: var(--muted);
+    line-height: 1.4;
+    position: relative;
+  }
+  .footer .tagline .heart {
+    color: var(--accent);
+    font-size: 14px;
+  }
+  @media (max-width: 520px) {
+    .footer { flex-direction: column; align-items: flex-start; }
+    .footer .tagline { text-align: left; }
+  }
+
+  iframe[name="hidden_iframe"] { display: none; }
+
+  /* ---------- SUCCESS ---------- */
+  #success {
+    display: none;
+    text-align: center;
+    padding: 50px 20px;
+  }
+  #success .check {
+    width: 70px; height: 70px;
+    background: linear-gradient(135deg, #6A4AA0, #8A5FC7);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 34px;
+    margin: 0 auto 22px;
+    box-shadow: 0 10px 26px rgba(91,59,140,0.35);
+  }
+  #success h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  #success p {
+    color: var(--muted);
+    font-size: 16px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<div class="header">
+  <div class="brand-block">
+    <div class="brand-script">
+      <span class="small-ss">S S</span>
+      Bakery House
+    </div>
+    <div class="brand-sub">Freshly Baked &nbsp;♥&nbsp; With Love</div>
+  </div>
+
+  <!-- Cake illustration (pure SVG — no image file needed) -->
+  <svg class="cake-img" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="cakeLav" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#E0D0F0"/>
+        <stop offset="100%" stop-color="#B89ADB"/>
+      </linearGradient>
+      <linearGradient id="plateG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#FFFFFF"/>
+        <stop offset="100%" stop-color="#E8E0F0"/>
+      </linearGradient>
+      <radialGradient id="bowlG" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#D9C4EE"/>
+        <stop offset="100%" stop-color="#A98CD0"/>
+      </radialGradient>
+    </defs>
+
+    <!-- Plate base -->
+    <ellipse cx="100" cy="200" rx="70" ry="10" fill="#D8CCE8" opacity="0.5"/>
+    <ellipse cx="100" cy="195" rx="65" ry="9" fill="url(#plateG)" stroke="#C9B8E0" stroke-width="0.8"/>
+    <ellipse cx="100" cy="192" rx="30" ry="4" fill="#B89ADB" opacity="0.4"/>
+
+    <!-- Cake bottom layer -->
+    <rect x="48" y="150" width="104" height="42" rx="6" fill="url(#cakeLav)" stroke="#8A5FC7" stroke-width="0.6"/>
+
+    <!-- Cake middle layer -->
+    <rect x="55" y="125" width="90" height="30" rx="5" fill="#E5D5F5" stroke="#8A5FC7" stroke-width="0.6"/>
+
+    <!-- Frosting drips (top layer) -->
+    <path d="M60 125 Q62 118 68 122 Q72 114 80 120 Q85 112 92 118 Q98 110 105 117 Q112 110 118 118 Q124 112 130 120 Q136 114 140 125 Z"
+          fill="#F0E5FA" stroke="#8A5FC7" stroke-width="0.5"/>
+
+    <!-- White pearls on bottom -->
+    <circle cx="60" cy="192" r="3" fill="#fff"/>
+    <circle cx="80" cy="192" r="3" fill="#fff"/>
+    <circle cx="100" cy="192" r="3" fill="#fff"/>
+    <circle cx="120" cy="192" r="3" fill="#fff"/>
+    <circle cx="140" cy="192" r="3" fill="#fff"/>
+
+    <!-- Purple bow -->
+    <path d="M85 168 Q70 158 76 172 Q80 180 92 174 Z" fill="#8A5FC7"/>
+    <path d="M115 168 Q130 158 124 172 Q120 180 108 174 Z" fill="#8A5FC7"/>
+    <circle cx="100" cy="170" r="5" fill="#6A4AA0"/>
+
+    <!-- Flowers on top -->
+    <g transform="translate(100,105)">
+      <!-- Lavender sprigs -->
+      <line x1="-20" y1="10" x2="-32" y2="-18" stroke="#7CB342" stroke-width="1.2"/>
+      <circle cx="-32" cy="-18" r="3" fill="#9C7CC7"/>
+      <circle cx="-30" cy="-12" r="2.5" fill="#B89ADB"/>
+      <circle cx="-34" cy="-8" r="2.5" fill="#B89ADB"/>
+
+      <line x1="20" y1="10" x2="32" y2="-18" stroke="#7CB342" stroke-width="1.2"/>
+      <circle cx="32" cy="-18" r="3" fill="#9C7CC7"/>
+      <circle cx="30" cy="-12" r="2.5" fill="#B89ADB"/>
+      <circle cx="34" cy="-8" r="2.5" fill="#B89ADB"/>
+
+      <!-- Big purple flower -->
+      <circle cx="0" cy="-6" r="10" fill="#B89ADB"/>
+      <circle cx="0" cy="-6" r="5" fill="#8A5FC7"/>
+      <circle cx="0" cy="-6" r="2" fill="#F0D060"/>
+
+      <!-- White daisy -->
+      <g transform="translate(-15,-8)">
+        <circle cx="0" cy="-6" r="4" fill="#fff"/>
+        <circle cx="6" cy="0" r="4" fill="#fff"/>
+        <circle cx="-6" cy="0" r="4" fill="#fff"/>
+        <circle cx="4" cy="5" r="4" fill="#fff"/>
+        <circle cx="-4" cy="5" r="4" fill="#fff"/>
+        <circle cx="0" cy="0" r="3" fill="#F0D060"/>
+      </g>
+
+      <!-- Green leaves -->
+      <ellipse cx="-10" cy="-14" rx="6" ry="3" fill="#7CB342" transform="rotate(-30 -10 -14)"/>
+      <ellipse cx="10" cy="-14" rx="6" ry="3" fill="#7CB342" transform="rotate(30 10 -14)"/>
+    </g>
+  </svg>
+</div>
+
+<!-- ══════════════════ TITLE PILL ══════════════════ -->
+<div class="title-pill">
+  <span class="corner-heart">♡</span>
+  <h1>Cake Order Form</h1>
+</div>
+
+<!-- ══════════════════ FORM CARD ══════════════════ -->
+<div class="card">
+
+  <!-- ⬇ Replace YOUR_FORM_ID with your real Google Form ID ⬇ -->
+  <form
+    id="cakeForm"
+    action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse"
+    method="POST"
+    target="hidden_iframe"
+    onsubmit="handleSubmit(event)">
+
+    <!-- ⬇ Replace each entry.1111111111 with your real entry IDs ⬇ -->
+
+    <!-- ── Section 1: Customer Info ── -->
+    <div class="field">
+      <label>Name :</label>
+      <input type="text" class="line-input" name="entry.1111111111" required>
+    </div>
+
+    <div class="field">
+      <label>Contact No. :</label>
+      <input type="tel" class="line-input" name="entry.2222222222" required>
+    </div>
+
+    <div class="field">
+      <label>Date of Order :</label>
+      <input type="date" class="line-input" name="entry.3333333333" required>
+    </div>
+
+    <div class="field">
+      <label>Delivery Date :</label>
+      <input type="date" class="line-input" name="entry.4444444444" required>
+    </div>
+
+    <div class="field">
+      <label>Occasion :</label>
+      <input type="text" class="line-input" name="entry.5555555555" placeholder="Birthday, Anniversary…">
+    </div>
+
+    <div class="field full-width">
+      <label>Special Instructions :</label>
+      <textarea class="line-input" name="entry.6666666666" rows="3"></textarea>
+    </div>
+
+    <!-- ── Section 2: Cake Details ── -->
+    <div class="section-heading">
+      <h2>Cake Details</h2>
+    </div>
+
+    <!-- Cake Type: checkboxes -->
+    <div class="field full-width" style="margin-bottom:4px;">
+      <label style="font-style: italic;">Cake Type :</label>
+    </div>
+    <div class="checkbox-row">
+      <label class="cb"><input type="checkbox" name="entry.7777777777" value="Fresh Cream"> Fresh Cream</label>
+      <label class="cb"><input type="checkbox" name="entry.7777777777" value="Chocolate"> Chocolate</label>
+      <label class="cb"><input type="checkbox" name="entry.7777777777" value="Fondant"> Fondant</label>
+      <label class="cb">Other : <input type="text" class="inline-input" name="entry.7777777777" style="min-width:120px;"></label>
+    </div>
+
+    <!-- Size: checkboxes -->
+    <div class="field full-width" style="margin-bottom:4px;">
+      <label style="font-style: italic;">Size :</label>
+    </div>
+    <div class="checkbox-row">
+      <label class="cb"><input type="checkbox" name="entry.8888888888" value="½ kg"> ½ kg</label>
+      <label class="cb"><input type="checkbox" name="entry.8888888888" value="1 kg"> 1 kg</label>
+      <label class="cb"><input type="checkbox" name="entry.8888888888" value="1.5 kg"> 1.5 kg</label>
+      <label class="cb"><input type="checkbox" name="entry.8888888888" value="2 kg"> 2 kg</label>
+      <label class="cb">Other : <input type="text" class="inline-input" name="entry.8888888888" style="min-width:100px;"></label>
+    </div>
+
+    <div class="field">
+      <label>Flavour :</label>
+      <input type="text" class="line-input" name="entry.9999999999">
+    </div>
+
+    <div class="field">
+      <label>Theme / Design :</label>
+      <input type="text" class="line-input" name="entry.1010101010">
+    </div>
+
+    <!-- Additional Requests -->
+    <div class="field full-width" style="margin-top:22px; margin-bottom:4px;">
+      <label style="font-style: italic;">Additional Requests :</label>
+    </div>
+    <div class="checkbox-row">
+      <label class="cb"><input type="checkbox" name="entry.1111111112" value="Photo Cake"> Photo Cake</label>
+      <label class="cb"><input type="checkbox" name="entry.1111111112" value="Custom Design"> Custom Design</label>
+      <label class="cb"><input type="checkbox" name="entry.1111111112" value="Fondant Figures"> Fondant Figures</label>
+      <label class="cb"><input type="checkbox" name="entry.1111111112" value="Message on Cake"> Message on Cake</label>
+      <label class="cb">Other : <input type="text" class="inline-input" name="entry.1111111112" style="min-width:140px;"></label>
+    </div>
+
+    <button type="submit" class="submit-btn">Place My Order ♡</button>
+  </form>
+
+  <!-- ── Success screen ── -->
+  <div id="success">
+    <div class="check">✓</div>
+    <h2>Thank You!</h2>
+    <p>Your order has been received.<br>We'll contact you shortly to confirm.</p>
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="footer">
+    <div class="thanks">
+      ♡ Thank you<br>for choosing<br>
+      <span class="script">SS Bakery House ♡</span>
+    </div>
+    <div class="tagline">
+      ─── ♡ ───<br>
+      We'll make your<br>
+      special moments sweeter…<br>
+      <span class="heart">♡</span>
+    </div>
+  </div>
+
+</div>
+
+<iframe name="hidden_iframe" id="hidden_iframe"></iframe>
+
+<script>
