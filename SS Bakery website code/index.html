@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SS Bakery House — Guwahati</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #FFF8F0;
+      --lavender: #E6DCF5;
+      --lavender-deep: #B9A0D9;
+      --warm-brown: #8B5E3C;
+      --dark-brown: #5A3E2B;
+      --blush: #F4C2C2;
+      --blush-dark: #E8A2A2;
+      --purple: #7B5EA7;
+      --purple-dark: #5C4580;
+      --text: #3E2C23;
+      --muted: #7A6A5F;
+      --shadow: 0 10px 30px rgba(90, 62, 43, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; margin-top: 0; }
+    .script-font { font-family: 'Great Vibes', cursive; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(255, 248, 240, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #E8DCD2;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+    }
+    .logo img {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--lavender);
+    }
+    .logo-text {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: var(--purple);
+      font-weight: 400;
+      line-height: 1;
+    }
+    nav { display: flex; gap: 1.5rem; }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    nav a:hover { color: var(--purple); }
+    .cart-btn {
+      background: var(--lavender);
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      color: var(--purple-dark);
+    }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--purple);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(rgba(60, 30, 90, 0.45), rgba(60, 30, 90, 0.45)),
+        url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: white;
+      text-align: left;
+    }
+    .hero-content { max-width: 600px; }
+    .hero h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+    .hero p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.8rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn.primary { background: var(--purple); color: white; }
+    .btn.primary:hover { background: var(--purple-dark); }
+    .btn.secondary { background: white; color: var(--purple); }
+    .btn.secondary:hover { background: #f5ede5; }
+    .btn.lavender { background: var(--lavender); color: var(--purple-dark); }
+    .btn.lavender:hover { background: var(--lavender-deep); color: white; }
+
+    section { padding: 4rem 0; }
+    .section-title { font-size: 2rem; margin-bottom: 0.5rem; }
+    .section-title.script {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: var(--purple);
+      font-weight: 400;
+    }
+    .section-subtitle { color: var(--muted); margin-bottom: 2rem; }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(90, 62, 43, 0.12);
+    }
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #f5ede5;
+    }
+    .product-info { padding: 1rem; }
+    .product-title { font-size: 1.1rem; margin: 0 0 0.3rem; }
+    .product-desc { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.8rem; }
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .price { font-weight: 600; color: var(--purple); }
+    .add-btn {
+      background: var(--lavender);
+      border: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--purple-dark);
+    }
+    .add-btn:hover { background: var(--lavender-deep); color: white; }
+
+    /* Shop Controls */
+    .shop-controls {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .shop-controls input,
+    .shop-controls select {
+      padding: 0.8rem 1rem;
+      border: 1px solid #E8DCD2;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: white;
+      outline: none;
+    }
+    .shop-controls input { flex: 1; min-width: 200px; }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .testimonial-card p { font-style: italic; color: var(--muted); }
+    .testimonial-card strong { color: var(--purple); }
+
+    /* Instagram */
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.5rem;
+    }
+    .instagram-grid img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.2s;
+      background: #f5ede5;
+    }
+    .instagram-grid img:hover { transform: scale(1.03); }
+
+    /* Footer */
+    footer {
+      background: var(--purple-dark);
+      color: var(--cream);
+      padding: 3rem 0;
+    }
+    footer a { color: var(--cream); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .footer-grid h4 { margin-bottom: 0.8rem; color: var(--lavender); }
+
+    /* Cart Drawer */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 999;
+    }
+    .overlay.open { opacity: 1; pointer-events: auto; }
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 400px;
+      max-width: 90vw;
+      background: white;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      transition: transform 0.3s;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid #E8DCD2;
+    }
+    .cart-header h3 { margin: 0; }
+    .cart-header button {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+    .cart-items { flex: 1; overflow-y: auto; padding: 1rem; }
+    .cart-item {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f0e8e0;
+    }
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #f5ede5;
+    }
+    .cart-footer {
+      padding: 1.5rem;
+      border-top: 1px solid #E8DCD2;
+    }
+    .cart-footer .btn { width: 100%; text-align: center; }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1100;
+      padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: white;
+      border-radius: 24px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 2rem;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--muted);
+      line-height: 1;
+    }
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .checkout-modal { max-width: 600px; }
+    .checkout-step { display: none; }
+    .checkout-step.active { display: block; }
+    .step-indicator {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+    .step-dot {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .step-dot.active { background: var(--purple); color: white; }
+
+    /* ============ CAKE ORDER FORM PAGE ============ */
+    #orderPage {
+      display: none;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #E6DCF5 0%, #F0E8FA 100%);
+      padding: 2rem 1rem 4rem;
+    }
+    #orderPage.active { display: block; }
+    body.order-mode main > section:not(#orderPage) { display: none; }
+
+    .order-sheet {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #F5EFFB;
+      border-radius: 28px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 60px rgba(123, 94, 167, 0.2);
+      border: 1px solid #D8C8EE;
+      position: relative;
+    }
+    .order-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .order-logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 0.5rem;
+      display: block;
+      box-shadow: 0 6px 20px rgba(123, 94, 167, 0.25);
+    }
+    .order-brand {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: var(--purple);
+      line-height: 1;
+      margin: 0;
+      font-weight: 400;
+    }
+    .order-tagline {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.3rem;
+      color: var(--purple);
+      margin: 0.2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+    .order-tagline::before,
+    .order-tagline::after {
+      content: '';
+      height: 1px;
+      width: 40px;
+      background: var(--purple);
+      opacity: 0.5;
+    }
+    .order-title-pill {
+      display: inline-block;
+      background: #EFE4F8;
+      border: 1.5px solid var(--purple);
+      border-radius: 999px;
+      padding: 0.5rem 2rem;
+      margin-top: 0.5rem;
+    }
+    .order-title-pill h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: var(--purple-dark);
+      margin: 0;
+      font-weight: 400;
+    }
+    .order-section-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: var(--purple-dark);
+      text-align: center;
+      margin: 2rem 0 1rem;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    .order-section-title::before,
+    .order-section-title::after {
+      content: '❦';
+      font-size: 0.9rem;
+      color: var(--purple);
+    }
+
+    .order-field {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 0.9rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--purple-dark);
+      font-size: 1rem;
+    }
+    .order-field label {
+      min-width: 160px;
+      font-weight: 500;
+    }
+    .order-field input,
+    .order-field textarea {
+      flex: 1;
+      border: none;
+      border-bottom: 1.5px solid #B9A0D9;
+      background: transparent;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.2rem 0.3rem;
+      outline: none;
+      color: var(--text);
+    }
+    .order-field input:focus,
+    .order-field textarea:focus { border-bottom-color: var(--purple-dark); }
+    .order-field.textarea-field { align-items: flex-start; }
+    .order-field textarea {
+      resize: vertical;
+      min-height: 30px;
+    }
+
+    .order-checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      margin: 0.3rem 0 0.9rem 0;
+      padding-left: 160px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--purple-dark);
+      font-size: 1rem;
+    }
+    .order-checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+    }
+    .order-checkbox-group input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--purple);
+      cursor: pointer;
+    }
+
+    .order-inline-input {
+      border: none;
+      border-bottom: 1.5px solid #B9A0D9;
+      background: transparent;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      padding: 0 0.3rem;
+      outline: none;
+      min-width: 100px;
+      color: var(--text);
+    }
+
+    .order-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 2.5rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .order-footer-left {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: var(--purple-dark);
+      line-height: 1.1;
+    }
+    .order-footer-left .heart { color: var(--purple); font-size: 1.2rem; }
+    .order-footer-right {
+      text-align: right;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.1rem;
+      color: var(--purple);
+      line-height: 1.3;
+    }
+    .order-submit-row {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        flex-direction: column;
+        padding: 1rem;
+        border-bottom: 1px solid #E8DCD2;
+        gap: 0.8rem;
+      }
+      nav.open { display: flex; }
+      .mobile-menu-btn { display: block; }
+      .hero { min-height: 70vh; }
+      .modal-grid { grid-template-columns: 1fr; }
+      .modal { padding: 1.5rem; }
+
+      .order-sheet { padding: 1.5rem 1rem; }
+      .order-brand { font-size: 2.2rem; }
+      .order-field { flex-direction: column; align-items: stretch; }
+      .order-field label { min-width: auto; margin-bottom: 0.2rem; }
+      .order-checkbox-group { padding-left: 0; }
+      .order-footer-left { font-size: 1.4rem; }
+    }
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .product-card img { height: 140px; }
+      .product-info { padding: 0.8rem; }
+      .product-title { font-size: 0.95rem; }
+      .product-desc { font-size: 0.75rem; }
+      .add-btn { padding: 0.4rem 0.7rem; font-size: 0.75rem; }
+      .logo-text { font-size: 1.3rem; }
+      .order-brand { font-size: 1.9rem; }
+      .order-title-pill h2 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <a class="logo" href="#" onclick="showHome(event)">
+        <img id="headerLogo" src="" alt="SS Bakery House logo" />
+        <span class="logo-text">SS Bakery House</span>
+      </a>
+      <nav id="mainNav">
+        <a href="#home" onclick="showHome(event)">Home</a>
+        <a href="#shop" onclick="showHome(event); scrollToId('shop')">Shop</a>
+        <a href="#" onclick="openOrderPage(event)">Cake Order Form</a>
+        <a href="#contact" onclick="showHome(event); scrollToId('contact')">Contact</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:0.8rem">
+        <button class="cart-btn" onclick="toggleCart()">Cart <span id="cartCount">0</span></button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Freshly Baked Happiness</h1>
+          <p>Artisanal breads, pastries, and custom cakes made with love every morning in Guwahati.</p>
+          <a href="#shop" class="btn primary">Order Fresh Today</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured -->
+    <section class="featured container">
+      <h2 class="section-title">Fresh Today</h2>
+      <p class="section-subtitle">Our daily favourites, baked in small batches.</p>
+      <div id="featuredGrid" class="product-grid"></div>
+    </section>
+
+    <!-- Shop -->
+    <section id="shop" class="shop container">
+      <h2 class="section-title">Shop Our Bakery</h2>
+      <p class="section-subtitle">Filter by category or search for your favourite treat.</p>
+      <div class="shop-controls">
+        <input type="text" id="searchInput" placeholder="Search pastries, breads, cakes..." oninput="renderShop()" />
+        <select id="categoryFilter" onchange="renderShop()">
+          <option value="All">All Categories</option>
+          <option value="Cakes">Cakes</option>
+          <option value="Breads">Breads</option>
+          <option value="Pastries">Pastries</option>
+          <option value="Gluten-Free">Gluten-Free</option>
+          <option value="Seasonal Boxes">Seasonal Boxes</option>
+        </select>
+      </div>
+      <div id="shopGrid" class="product-grid"></div>
+    </section>
+
+    <!-- Custom Order CTA -->
+    <section id="custom" class="custom container">
+      <div style="text-align:center;max-width:700px;margin:0 auto">
+        <h2 class="section-title script">Custom Cake Orders</h2>
+        <p class="section-subtitle">Planning a celebration? Fill out our cake order form and we'll bake something special for you.</p>
+        <button class="btn primary" onclick="openOrderPage(event)">Open Cake Order Form</button>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials container">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p>"The sourdough is unbeatable. Crusty outside, soft inside — just perfect."</p>
+          <strong>— Anuradha Bora, Guwahati</strong>
+        </div>
+        <div class="testimonial-card">
+          <p>"Ordered a custom birthday cake and it exceeded all expectations. Beautiful and delicious!"</p>
+          <strong>— Bhaskar Jyoti Deka, Six Mile</strong>
+        </div>
+        <div class="testimonial-card">
+          <p>"Their gluten-free brownies are a game changer. You'd never know they're GF."</p>
+          <strong>— Pallabi Sharma, Beltola</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instagram -->
+    <section class="instagram container">
+      <h2 class="section-title">Follow Us @ssbakeryhouse</h2>
+      <div class="instagram-grid">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80" alt="Croissants" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80'" />
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=400&q=80" alt="Cake" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80'" />
+        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=400&q=80" alt="Cupcakes" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80'" />
+        <img src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=400&q=80" alt="Macarons" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80'" />
+        <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=400&q=80" alt="Cinnamon rolls" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80'" />
+        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=400&q=80" alt="Cookies" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80'" />
+      </div>
+    </section>
+
+    <!-- ============ CAKE ORDER FORM PAGE ============ -->
+    <section id="orderPage">
+      <div class="order-sheet">
+        <div class="order-header">
+          <img id="orderLogo" class="order-logo" src="" alt="SS Bakery House logo" />
+          <h1 class="order-brand">SS Bakery House</h1>
+          <div class="order-tagline">Freshly Baked ♥ With Love</div>
+          <div class="order-title-pill">
+            <h2>Cake Order Form</h2>
+          </div>
+        </div>
+
+        <form id="cakeOrderForm" novalidate>
+          <div class="order-field">
+            <label for="oName">Name :</label>
+            <input type="text" id="oName" />
+          </div>
+          <div class="order-field">
+            <label for="oContact">Contact No. :</label>
+            <input type="tel" id="oContact" />
+          </div>
+          <div class="order-field">
+            <label for="oOrderDate">Date of Order :</label>
+            <input type="date" id="oOrderDate" />
+          </div>
+          <div class="order-field">
+            <label for="oDeliveryDate">Delivery Date :</label>
+            <input type="date" id="oDeliveryDate" />
+          </div>
+          <div class="order-field">
+            <label for="oOccasion">Occasion :</label>
+            <input type="text" id="oOccasion" placeholder="Birthday, Anniversary, etc." />
+          </div>
+          <div class="order-field textarea-field">
+            <label for="oInstructions">Special Instructions :</label>
+            <textarea id="oInstructions" rows="3"></textarea>
+          </div>
+
+          <h3 class="order-section-title">Cake Details</h3>
+
+          <div class="order-field" style="margin-bottom:0.2rem">
+            <label>Cake Type :</label>
+          </div>
+          <div class="order-checkbox-group">
+            <label><input type="checkbox" name="cakeType" value="Fresh Cream" /> Fresh Cream</label>
+            <label><input type="checkbox" name="cakeType" value="Chocolate" /> Chocolate</label>
+            <label><input type="checkbox" name="cakeType" value="Fondant" /> Fondant</label>
+            <label style="display:flex;align-items:center;gap:0.4rem">
+              <input type="checkbox" name="cakeType" value="Other" /> Other :
+              <input type="text" class="order-inline-input" id="cakeTypeOther" />
+            </label>
+          </div>
+
+          <div class="order-field" style="margin-bottom:0.2rem">
+            <label>Size :</label>
+          </div>
+          <div class="order-checkbox-group">
+            <label><input type="checkbox" name="cakeSize" value="1/2 kg" /> ½ kg</label>
+            <label><input type="checkbox" name="cakeSize" value="1 kg" /> 1 kg</label>
+            <label><input type="checkbox" name="cakeSize" value="1.5 kg" /> 1.5 kg</label>
+            <label><input type="checkbox" name="cakeSize" value="2 kg" /> 2 kg</label>
+            <label style="display:flex;align-items:center;gap:0.4rem">
+              <input type="checkbox" name="cakeSize" value="Other" /> Other :
+              <input type="text" class="order-inline-input" id="cakeSizeOther" />
+            </label>
+          </div>
+
+          <div class="order-field">
+            <label for="oFlavour">Flavour :</label>
+            <input type="text" id="oFlavour" />
+          </div>
+          <div class="order-field">
+            <label for="oTheme">Theme / Design :</label>
+            <input type="text" id="oTheme" />
+          </div>
+
+          <div class="order-field" style="margin-bottom:0.2rem;margin-top:1.2rem">
+            <label>Additional Requests :</label>
+          </div>
+          <div class="order-checkbox-group">
+            <label><input type="checkbox" name="additional" value="Photo Cake" /> Photo Cake</label>
+            <label><input type="checkbox" name="additional" value="Custom Design" /> Custom Design</label>
+            <label><input type="checkbox" name="additional" value="Fondant Figures" /> Fondant Figures</label>
+            <label><input type="checkbox" name="additional" value="Message on Cake" /> Message on Cake</label>
+            <label style="display:flex;align-items:center;gap:0.4rem">
+              <input type="checkbox" name="additional" value="Other" /> Other :
+              <input type="text" class="order-inline-input" id="additionalOther" />
+            </label>
+          </div>
+
+          <div class="order-submit-row">
+            <button type="submit" class="btn primary">Submit Cake Order</button>
+            <div class="success-message" id="orderSuccess" style="max-width:400px;margin:1rem auto 0">
+              Thank you! Your cake order has been received. We'll contact you shortly.
+            </div>
+          </div>
+
+          <div class="order-footer">
+            <div class="order-footer-left">
+              <span class="heart">♡</span> Thank you<br />
+              for choosing<br />
+              SS Bakery House <span class="heart">♡</span>
+            </div>
+            <div class="order-footer-right">
+              — ♡ —<br />
+              We'll make your<br />
+              special moments sweeter...
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container footer-grid">
+      <div>
+        <h4>SS Bakery House</h4>
+        <p>Basistha Natun Bazaar Bus Stop<br />Opp. Shani Mandir<br />Guwahati, Assam — 781029</p>
+        <p><a href="tel:+919876543210">+91 98765 43210</a><br />
+        <a href="mailto:hello@ssbakeryhouse.com">hello@ssbakeryhouse.com</a></p>
+      </div>
+      <div>
+        <h4>Business Hours</h4>
+        <p>Mon–Fri: 7am – 8pm<br />Sat: 8am – 9pm<br />Sun: 8am – 6pm</p>
+      </div>
+      <div>
+        <h4>Location</h4>
+        <p>Basistha Natun Bazaar Bus Stop<br />Opp. Shani Mandir, Guwahati 781029</p>
+        <p><a href="https://maps.google.com/?q=Basistha+Natun+Bazaar+Bus+Stop+Guwahati+781029" target="_blank">View on Google Maps →</a></p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <p><a href="#shop" onclick="showHome(event); scrollToId('shop')">Shop</a><br /><a href="#" onclick="openOrderPage(event)">Cake Order Form</a><br /><a href="#">FAQs</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div id="cartOverlay" class="overlay" onclick="toggleCart()"></div>
+  <aside id="cartDrawer" class="cart-drawer">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button onclick="toggleCart()">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div style="display:flex;justify-content:space-between;margin-bottom:1rem;font-weight:600">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">₹0.00</span>
+      </div>
+      <button class="btn primary" onclick="openCheckout()">Checkout</button>
+    </div>
+  </aside>
+
+  <!-- Product Modal -->
+  <div id="productModal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="modal-overlay" onclick="closeCheckout(event)">
+    <div class="modal checkout-modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeCheckout()">×</button>
+      <div id="checkoutContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- LOGO ----------
+    // Your SS Bakery House logo is embedded below as a base64 SVG so it works offline.
+    // If you have the real logo file, replace the value of LOGO_SRC with 'images/logo.png'.
+    const LOGO_SRC = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="bg" cx="50%" cy="45%" r="65%">
+            <stop offset="0%" stop-color="#EFE4F8"/>
+            <stop offset="100%" stop-color="#D9C4EC"/>
+          </radialGradient>
+          <linearGradient id="purple" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#A98CD1"/>
+            <stop offset="100%" stop-color="#6B4B9E"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="400" rx="40" fill="url(#bg)"/>
+        <circle cx="200" cy="200" r="170" fill="none" stroke="#C9A96A" stroke-width="1.5"/>
+        <circle cx="200" cy="200" r="162" fill="none" stroke="#C9A96A" stroke-width="0.6"/>
+        <text x="200" y="215" text-anchor="middle"
+              font-family="Georgia, serif" font-style="italic"
+              font-size="180" fill="url(#purple)" stroke="#F5EFFB" stroke-width="1">SS</text>
+        <text x="200" y="285" text-anchor="middle"
+              font-family="Georgia, serif" font-style="italic"
+              font-size="46" fill="#6B4B9E">Bakery House</text>
+        <path d="M120 250 Q200 240 280 250" stroke="#6B4B9E" stroke-width="2" fill="none" opacity="0.6"/>
+        <text x="200" y="130" text-anchor="middle" font-size="34">🧁</text>
+        <text x="200" y="345" text-anchor="middle" font-size="22" fill="#6B4B9E">♡</text>
+      </svg>
+    `);
+
+    document.getElementById('headerLogo').src = LOGO_SRC;
+    document.getElementById('orderLogo').src = LOGO_SRC;
+
+    // ---------- FALLBACK IMAGE ----------
+    const FALLBACK_IMG = 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80';
+
+    // ---------- DATA (prices in INR) ----------
+    const products = [
+      { id: 1, name: 'Classic Sourdough', category: 'Breads', price: 320, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80', desc: 'Naturally leavened with a crisp crust and soft crumb.', ingredients: 'Organic flour, water, sea salt, wild yeast.', allergens: 'Gluten', dietary: 'Vegan', sizes: ['Small', 'Large'] },
+      { id: 2, name: 'Butter Croissant', category: 'Pastries', price: 160, image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80', desc: 'Flaky, buttery, and baked fresh every morning.', ingredients: 'Flour, butter, milk, sugar, yeast, salt.', allergens: 'Gluten, Dairy', dietary: 'Vegetarian', sizes: ['Single', 'Box of 4'] },
+      { id: 3, name: 'Chocolate Fudge Cake', category: 'Cakes', price: 1450, image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80', desc: 'Rich chocolate layers with silky fudge frosting.', ingredients: 'Flour, cocoa, eggs, butter, sugar, cream.', allergens: 'Gluten, Dairy, Eggs', dietary: 'Vegetarian', sizes: ['6-inch', '8-inch', '10-inch'] },
+      { id: 4, name: 'Vanilla Cupcakes', category: 'Cakes', price: 680, image: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80', desc: 'Light vanilla sponge with swirled buttercream.', ingredients: 'Flour, sugar, eggs, butter, vanilla, milk.', allergens: 'Gluten, Dairy, Eggs', dietary: 'Vegetarian', sizes: ['6 pack', '12 pack'] },
+      { id: 5, name: 'Macaron Gift Box', category: 'Seasonal Boxes', price: 900, image: 'https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=800&q=80', desc: 'Assorted French macarons in seasonal flavours.', ingredients: 'Almond flour, egg whites, sugar, cream, fruit.', allergens: 'Nuts, Eggs, Dairy', dietary: 'Gluten-Free', sizes: ['6 pieces', '12 pieces'] },
+      { id: 6, name: 'Cinnamon Rolls', category: 'Pastries', price: 210, image: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=800&q=80', desc: 'Soft, gooey, and topped with cream cheese glaze.', ingredients: 'Flour, cinnamon, butter, cream cheese, sugar.', allergens: 'Gluten, Dairy', dietary: 'Vegetarian', sizes: ['Single', '4 pack'] },
+      { id: 7, name: 'Gluten-Free Brownies', category: 'Gluten-Free', price: 460, image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80', desc: 'Fudgy brownies made with almond flour.', ingredients: 'Almond flour, cocoa, eggs, coconut oil, sugar.', allergens: 'Nuts, Eggs', dietary: 'Gluten-Free', sizes: ['4 pack', '8 pack'] },
+      { id: 8, name: 'Seasonal Pastry Box', category: 'Seasonal Boxes', price: 1050, image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=800&q=80', desc: 'A curated box of our best seasonal pastries.', ingredients: 'Varies by season. Please ask for details.', allergens: 'Gluten, Dairy, Eggs, Nuts', dietary: 'Vegetarian', sizes: ['Small', 'Large'] },
+      { id: 9, name: 'French Baguette', category: 'Breads', price: 150, image: 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=800&q=80', desc: 'Crisp outside, airy inside. Baked daily.', ingredients: 'Flour, water, salt, yeast.', allergens: 'Gluten', dietary: 'Vegan', sizes: ['Single', 'Two pack'] },
+      { id: 10, name: 'Almond Croissant', category: 'Pastries', price: 190, image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80', desc: 'Buttery croissant filled with almond cream.', ingredients: 'Flour, butter, almond cream, sugar, eggs.', allergens: 'Gluten, Dairy, Nuts, Eggs', dietary: 'Vegetarian', sizes: ['Single', 'Box of 4'] }
+    ];
+
+    // ---------- CART STATE ----------
+    let cart = [];
+
+    function formatPrice(n) {
+      return '₹' + n.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function addToCart(id, size = null) {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+      const selectedSize = size || (product.sizes ? product.sizes[0] : 'Standard');
+      const key = id + '-' + selectedSize;
+      const existing = cart.find(item => item.key === key);
+      if (existing) {
+        existing.quantity++;
+      } else {
+        cart.push({
+          key, id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          size: selectedSize,
+          quantity: 1
+        });
+      }
+      updateCartUI();
+      const btn = event && event.target;
+      if (btn && btn.classList.contains('add-btn')) {
+        const original = btn.textContent;
+        btn.textContent = 'Added!';
+        setTimeout(() => { btn.textContent = original; }, 800);
+      }
+    }
+
+    function removeFromCart(key) {
+      cart = cart.filter(item => item.key !== key);
+      updateCartUI();
+    }
+
+    function changeQuantity(key, delta) {
+      const item = cart.find(i => i.key === key);
+      if (!item) return;
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        removeFromCart(key);
+      } else {
+        updateCartUI();
+      }
+    }
+
+    function updateCartUI() {
+      const cartItems = document.getElementById('cartItems');
+      const cartCount = document.getElementById('cartCount');
+      const cartSubtotal = document.getElementById('cartSubtotal');
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="text-align:center;color:var(--muted);padding:2rem 0">Your cart is empty.</p>';
+      } else {
+        cartItems.innerHTML = cart.map(item => `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" onerror="this.src='${FALLBACK_IMG}'" />
+            <div style="flex:1">
+              <div style="font-weight:600">${item.name}</div>
+              <div style="font-size:0.8rem;color:var(--muted)">${item.size}</div>
+              <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.3rem">
+                <button onclick="changeQuantity('${item.key}', -1)" style="width:26px;height:26px;border-radius:50%;border:1px solid #ddd;background:white;cursor:pointer">−</button>
+                <span>${item.quantity}</span>
+                <button onclick="changeQuantity('${item.key}', 1)" style="width:26px;height:26px;border-radius:50%;border:1px solid #ddd;background:white;cursor:pointer">+</button>
+                <button onclick="removeFromCart('${item.key}')" style="margin-left:auto;background:none;border:none;color:#c0392b;cursor:pointer;font-size:0.8rem">Remove</button>
+              </div>
+            </div>
+            <div style="font-weight:600">${formatPrice(item.price * item.quantity)}</div>
+          </div>
+        `).join('');
+      }
+
+      const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
+      const subtotal = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+      cartCount.textContent = totalItems;
+      cartSubtotal.textContent = formatPrice(subtotal);
+    }
+
+    function toggleCart() {
+      document.getElementById('cartDrawer').classList.toggle('open');
+      document.getElementById('cartOverlay').classList.toggle('open');
+    }
+
+    // ---------- PRODUCT RENDERING ----------
+    function productCard(p) {
+      return `
+        <div class="product-card" onclick="openProduct(${p.id})">
+          <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='${FALLBACK_IMG}'" />
+          <div class="product-info">
+            <h3 class="product-title">${p.name}</h3>
+            <p class="product-desc">${p.desc}</p>
+            <div class="product-footer">
+              <span class="price">${formatPrice(p.price)}</span>
+              <button class="add-btn" onclick="event.stopPropagation(); addToCart(${p.id})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFeatured() {
+      const featured = products.slice(0, 4);
+      document.getElementById('featuredGrid').innerHTML = featured.map(productCard).join('');
+    }
+
+    function renderShop() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const category = document.getElementById('categoryFilter').value;
+      let filtered = products;
+      if (category !== 'All') {
+        filtered = filtered.filter(p => p.category === category);
+      }
+      if (search) {
+        filtered = filtered.filter(p =>
+          p.name.toLowerCase().includes(search) ||
+          p.desc.toLowerCase().includes(search) ||
+          p.category.toLowerCase().includes(search)
+        );
+      }
+      document.getElementById('shopGrid').innerHTML = filtered.length
+        ? filtered.map(productCard).join('')
+        : '<p style="color:var(--muted);grid-column:1/-1;text-align:center;padding:2rem">No products found.</p>';
+    }
+
+    // ---------- PRODUCT MODAL ----------
+    function openProduct(id) {
+      const p = products.find(prod => prod.id === id);
+      if (!p) return;
+      const modalContent = document.getElementById('modalContent');
+      modalContent.innerHTML = `
+        <div class="modal-grid">
+          <img src="${p.image}" alt="${p.name}" style="width:100%;border-radius:16px;height:300px;object-fit:cover;background:#f5ede5" onerror="this.src='${FALLBACK_IMG}'" />
+          <div>
+            <h2 style="margin-bottom:0.5rem">${p.name}</h2>
+            <p style="color:var(--muted);margin-bottom:1rem">${p.desc}</p>
+            <p><strong>Price:</strong> ${formatPrice(p.price)}</p>
+            <p><strong>Ingredients:</strong> ${p.ingredients}</p>
+            <p><strong>Allergens:</strong> ${p.allergens}</p>
+            <p><strong>Dietary:</strong> ${p.dietary}</p>
+            <div style="margin-top:1rem">
+              <label for="modalSize" style="display:block;margin-bottom:0.4rem;font-weight:500;font-size:0.95rem">Size / Portion</label>
+              <select id="modalSize" style="width:100%;padding:0.8rem;border:1px solid #E8DCD2;border-radius:12px;font-family:inherit;font-size:0.95rem;outline:none">
+                ${p.sizes.map(s => `<option>${s}</option>`).join('')}
+              </select>
+            </div>
+            <button class="btn primary" style="margin-top:1rem" onclick="addFromModal(${p.id})">Add to Cart</button>
+          </div>
+        </div>
+      `;
+      document.getElementById('productModal').classList.add('open');
+    }
+
+    function addFromModal(id) {
+      const size = document.getElementById('modalSize').value;
+      addToCart(id, size);
+      closeModal();
+    }
+
+    function closeModal(event) {
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('productModal').classList.remove('open');
+    }
+
+    // ---------- CHECKOUT ----------
+    let checkoutStep = 1;
+    let checkoutData = {
+      name: '', email: '', phone: '',
+      method: 'delivery', address: '', date: '', timeSlot: '',
+      payment: ''
+    };
+
+    function openCheckout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty. Add something delicious first!');
+        return;
+      }
+      toggleCart();
+      checkoutStep = 1;
+      checkoutData = { name: '', email: '', phone: '', method: 'delivery', address: 'Basistha Natun Bazaar Bus Stop, Opp. Shani Mandir, Guwahati 781029', date: '', timeSlot: '', payment: '' };
+      renderCheckout();
+      document.getElementById('checkoutModal').classList.add('open');
+    }
+
+    function closeCheckout(event) {
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('checkoutModal').classList.remove('open');
+    }
+
+    function renderCheckout() {
+      const minDate = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString().split('T')[0];
+      const content = document.getElementById('checkoutContent');
+
+      const step1 = `
+        <div class="checkout-step ${checkoutStep === 1 ? 'active' : ''}">
+          <h3>Contact Details</h3>
+          <div style="margin-bottom:1rem">
+            <label style="display:block;margin-bottom:0.4rem;font-weight:500">Full Name *</label>
+            <input type="text" id="checkoutName" value="${checkoutData.name}" placeholder="Jane Doe" style="width:100%;padding:0.8rem;border:1px solid #E8DCD2;border-radius:12px;font-family:inherit;outline:none" />
+          </div>
+          <div style="margin-bottom:1rem">
+            <label style="display:block;margin-bottom:0.4rem;font-weight:500">Email *</label>
+            <input type="email" id="checkoutEmail" value="${checkoutData.email}" placeholder="jane@example.com" style="width:100%;padding:0.8rem;border:1px solid #E8DCD2;border-radius:12px;font-family:inherit;outline:none" />
+          </div>
+          <div style="margin-bottom:1rem">
+            <label style="display:block;margin-bottom:0.4rem;font-weight:500">Phone *</label>
+            <input type="tel" id="checkoutPhone" value="${checkoutData.phone}" placeholder="+91 98765 43210" style="width:100%;padding:0.8rem;border:1px solid #E8DCD2;border-radius:12px;font-family:inherit;outline:none" />
+          </div>
+        </div>
+      `;
+
+      const step2 = `
+        <div class="checkout-step ${checkoutStep === 2 ? 'active' : ''}">
+          <h3>Delivery / Pickup</h3>
+          <div style="margin-bottom:1rem">
+            <label style="display:block;margin-bottom:0.4rem;font-weight:500">Method *</label>
+            <label style="font-weight:400;display:inline-block;margin-right:1rem">
+              <input type="radio" name="method" value="delivery" ${checkoutData.method === 'delivery' ? 'checked' : ''} /> Delivery
+            </label>
+            <label style="font-weight:400;display:inline-block">
+              <input type="radio" name="method" value="pickup" ${checkoutData.method === 'pickup' ? 'checked' : ''} /> Pickup
+            </label>
+          </div>
+          <div style="margin-bottom:1rem">
+            <label style="display:block;margin-bottom:0.4rem;font-weight:500">Address (required for delivery)</label>
+            <input type="text" id="checkoutAddress" value="${checkoutData.address}" placeholder="House no, street, area, Guwahati" style="width:100%;padding:0.8rem;border:1px solid #E8DCD2;border-radius:12px;font-family:inherit;outline:none" />
+          </div>
+          <div style="margin-bottom:1rem">
+            <label style="display:block;margin-bottom:0.4rem;font-weight:500">Date * (48 hours notice)</label>
+            <input type="date" id="checkoutDate" min="${minDate}" value="${checkoutData.date}" style="width:100%;padding:0.8rem;border:1px solid #E8DCD2;border-radius:12px;font-family:inherit;outline:none" />
+          </div>
+          <div style="margin-bottom:1rem">
+            <label style="display:block;margin-bottom:0.4rem;font-weight:500">Time Slot *</label>
+            <select id="checkoutTime" style="width:100%;padding:0.8rem;border:1px solid #E8DCD2;border-radius:12px;font-family:inherit;outline:none">
+              <option value="">Select a time</option>
+              <option ${checkoutData.timeSlot === '9am-11am' ? 'selected' : ''} value="9am-11am">9:00 AM – 11:00 AM</option>
+              <option ${checkoutData.timeSlot === '11am-1pm' ? 'selected' : ''} value="11am-1pm">11:00 AM – 1:00 PM</option>
+              <option ${checkoutData.timeSlot === '1pm-3pm' ? 'selected' : ''} value="1pm-3pm">1:00 PM – 3:00 PM</option>
+              <option ${checkoutData.timeSlot === '3pm-5pm' ? 'selected' : ''} value="3pm-5pm">3:00 PM – 5:00 PM</option>
+              <option ${checkoutData.timeSlot === '5pm-7pm' ? 'selected' : ''} value="5pm-7pm">5:00 PM – 7:00 PM</option>
+            </select>
+          </div>
+        </div>
+      `;
+
+      const step3 = `
+        <div class="checkout-step ${checkoutStep === 3 ? 'active' : ''}">
+          <h3>Payment</h3>
+          <p style="color:var(--muted);font-size:0.9rem">This is a prototype. Payment gateways are placeholders.</p>
+          <div>
+            <label style="font-weight:400;display:block;margin-bottom:0.5rem">
+              <input type="radio" name="payment" value="Stripe" ${checkoutData.payment === 'Stripe' ? 'checked' : ''} /> Stripe (Card)
+            </label>
+            <label style="font-weight:400;display:block;margin-bottom:0.5rem">
+              <input type="radio" name="payment" value="PayPal" ${checkoutData.payment === 'PayPal' ? 'checked' : ''} /> PayPal
+            </label>
+            <label style="font-weight:400;display:block">
+              <input type="radio" name="payment" value="UPI" ${checkoutData.payment === 'UPI' ? 'checked' : ''} /> UPI (GPay / PhonePe / Paytm)
+            </label>
+          </div>
+        </div>
+      `;
+
+      content.innerHTML = `
+        <h2 style="text-align:center">Checkout</h2>
+        <div class="step-indicator">
+          <div class="step-dot ${checkoutStep >= 1 ? 'active' : ''}">1</div>
+          <div class="step-dot ${checkoutStep >= 2 ? 'active' : ''}">2</div>
+          <div class="step-dot ${checkoutStep >= 3 ? 'active' : ''}">3</div>
+        </div>
+        ${step1}
+        ${step2}
+        ${step3}
+        <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
+          <button class="btn secondary" onclick="prevCheckout()" ${checkoutStep === 1 ? 'style="visibility:hidden"' : ''}>Back</button>
+          ${checkoutStep < 3
+            ? `<button class="btn primary" onclick="nextCheckout()">Next</button>`
+            : `<button class="btn primary" onclick="placeOrder()">Place Order</button>`}
+        </div>
+      `;
+    }
+
+    function saveStepData() {
+      if (checkoutStep === 1) {
+        checkoutData.name = document.getElementById('checkoutName')?.value || '';
+        checkoutData.email = document.getElementById('checkoutEmail')?.value || '';
+        checkoutData.phone = document.getElementById('checkoutPhone')?.value || '';
+      } else if (checkoutStep === 2) {
+        checkoutData.method = document.querySelector('input[name="method"]:checked')?.value || 'delivery';
+        checkoutData.address = document.getElementById('checkoutAddress')?.value || '';
+        checkoutData.date = document.getElementById('checkoutDate')?.value || '';
+        checkoutData.timeSlot = document.getElementById('checkoutTime')?.value || '';
+      } else if (checkoutStep === 3) {
+        checkoutData.payment = document.querySelector('input[name="payment"]:checked')?.value || '';
+      }
+    }
+
+    function validateCheckoutStep(step) {
+      if (step === 1) {
+        if (!checkoutData.name || !checkoutData.email || !checkoutData.phone) {
+          alert('Please fill in all contact fields.');
+          return false;
+        }
+        if (!/^[^@]+@[^@]+\.[^@]+$/.test(checkoutData.email)) {
+          alert('Please enter a valid email address.');
+          return false;
+        }
+      }
+      if (step === 2) {
+        if (!checkoutData.date || !checkoutData.timeSlot) {
+          alert('Please select a date and time slot.');
+          return false;
+        }
+        const minDate = new Date(Date.now() + 48 * 60 * 60 * 1000);
+        if (new Date(checkoutData.date) < minDate) {
+          alert('Please choose a date at least 48 hours from now.');
+          return false;
+        }
+        if (checkoutData.method === 'delivery' && !checkoutData.address) {
+          alert('Please enter a delivery address.');
+          return false;
+        }
+      }
+      if (step === 3) {
+        if (!checkoutData.payment) {
+          alert('Please select a payment method.');
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function nextCheckout() {
+      saveStepData();
+      if (!validateCheckoutStep(checkoutStep)) return;
+      checkoutStep++;
+      renderCheckout();
+    }
+
+    function prevCheckout() {
+      saveStepData();
+      checkoutStep--;
+      renderCheckout();
+    }
+
+    function placeOrder() {
+      saveStepData();
+      if (!validateCheckoutStep(3)) return;
+      const content = document.getElementById('checkoutContent');
+      content.innerHTML = `
+        <div style="text-align:center;padding:2rem">
+          <h2>Thank you, ${checkoutData.name}!</h2>
+          <p>Your order has been placed.</p>
+          <p style="color:var(--muted)">Payment via <strong>${checkoutData.payment}</strong> is a placeholder in this prototype.</p>
+          <button class="btn primary" onclick="closeCheckout()" style="margin-top:1rem">Continue</button>
+        </div>
+      `;
+      cart = [];
+      updateCartUI();
+    }
+
+    // ---------- CAKE ORDER FORM ----------
+    function openOrderPage(e) {
+      if (e) e.preventDefault();
+      document.getElementById('orderPage').classList.add('active');
+      document.body.classList.add('order-mode');
+      document.getElementById('mainNav').classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showHome(e) {
+      if (e) e.preventDefault();
+      document.getElementById('orderPage').classList.remove('active');
+      document.body.classList.remove('order-mode');
+      document.getElementById('mainNav').classList.remove('open');
+      if (!e || !e.target || !e.target.hash) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setTimeout(() => {
+          const el = document.querySelector(e.target.hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      }
+    }
+
+    function scrollToId(id) {
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 60);
+    }
+
+    function handleCakeOrderSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('oName').value.trim();
+      const contact = document.getElementById('oContact').value.trim();
+      const orderDate = document.getElementById('oOrderDate').value;
+      const deliveryDate = document.getElementById('oDeliveryDate').value;
+
+      if (!name) { alert('Please enter your name.'); return; }
+      if (!contact) { alert('Please enter your contact number.'); return; }
+      if (!orderDate) { alert('Please select the date of order.'); return; }
+      if (!deliveryDate) { alert('Please select the delivery date.'); return; }
+      if (new Date(deliveryDate) < new Date(Date.now() + 72 * 60 * 60 * 1000)) {
+        alert('Delivery date must be at least 72 hours (3 days) from today.');
+        return;
+      }
+
+      const success = document.getElementById('orderSuccess');
+      success.style.display = 'block';
+      setTimeout(() => {
+        success.style.display = 'none';
+        document.getElementById('cakeOrderForm').reset();
+        showHome();
+      }, 4000);
+    }
+
+    // ---------- MOBILE MENU ----------
+    function toggleMenu() {
+      document.getElementById('mainNav').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('mainNav').classList.remove('open');
+    }
+
+    // ---------- INIT ----------
+    document.addEventListener('DOMContentLoaded', () => {
+      renderFeatured();
+      renderShop();
+      updateCartUI();
+
+      document.getElementById('cakeOrderForm').addEventListener('submit', handleCakeOrderSubmit);
+    });
+  </script>
+</body>
+</html>
